@@ -1,0 +1,76 @@
+"""
+File: student.py
+Resources to manage a student's name and test scores 
+"""
+import random
+
+class Student(object):
+    """Represents a student.  Object is parent class name.  This is the Class Header"""
+    
+    def __init__(self, name, number):
+        """Constructor creates a Student with the given name and number of scores and sets all scores to 0.   This is a method header"""
+        self.name = name
+        self.scores = []
+        for count in range(number):
+            self.scores.append(0)
+            
+    def getName(self):
+        """Returns the students name"""
+        return self.name
+        
+    def setScore(self, i, score):
+        """Resets the ith score, counting from 1."""
+        
+    def getScore(self, i):
+        """Returns the ith score, counting from 1"""
+        return self.scores[i-1]
+        
+    def getAverageScore(self):
+        """Returns the Average score"""
+        return sum(self.scores)/ len(self.scores)
+        
+    def getHighScore(self):
+        """Returns the Highest Score"""
+        return max(self.scores)
+        
+    def __str__(self):
+        """Returns the string representation of the student"""
+        return "Name: " + self.name + "\nScores: " + \
+            " " .join(map(str, self.scores))
+
+    def __eq__(self, other):
+        if isinstance(other, Student):
+            return self.name == other.name
+        return False
+
+    def __lt__(self, other):
+        if isinstance(other, Student):
+            return self.name < other.name
+        return False
+
+    def __ge__(self, other):
+        if isinstance(other, Student):
+            return self.name >= other.name
+        return False
+        
+
+students = []
+
+student1 = Student("Alice", 10)
+student2 = Student("Bilbo", 10)
+student3 = Student("Catherine", 10)
+student4 = Student("Dallas", 10)
+
+students.append(student1)
+students.append(student2)
+students.append(student3)
+students.append(student4)
+
+random.shuffle(students)
+
+for student in students:
+    print(student.name, student.scores)
+
+students.sort()
+for student in students:
+    print(student.name, student.scores)
